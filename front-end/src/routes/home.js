@@ -8,10 +8,10 @@ import AddGoalModal from "../components/add-goal";
 import AddInvestMentModal from "../components/add-investment-modal";
 import AddBudgetModal from "../components/add-budget-modal";
 import AddExpenseModal from "../components/add-expense-modal";
+import UpdateGoalAmount from "../components/update-goal-amount";
 
 
 function Home(props) {
-
   const [showExpenseModal, toggleshowExpenseModal] = useState(false);
 
   const [userDetails, setUserDetails] = useState();
@@ -21,7 +21,7 @@ function Home(props) {
   const [salary, setSalary] = useState();
 
   const [selectedUpdateExpense, setSelectedUpdateExpense] = useState();
-  const [selectedUpdateGoal, setSelectedUpdateGoal] = useState();
+  const [selectedUpdateGoal, setSelectedUpdateGoal] = useState([]);
 
   const getUserDetails = () => {
     API_CLIENT.get('/get-complete-fin-detail').then((res) => {
@@ -62,15 +62,18 @@ function Home(props) {
       <Header />
       <AddSalaryModal setSalary={setSalary} />
       <AddInvestMentModal getUserDetails={getUserDetails} Investements={userDetails?.Investements?.Investements} />
-      <AddGoalModal getUserDetails={getUserDetails} />
       <AddBudgetModal getUserDetails={getUserDetails} />
+      <AddGoalModal getUserDetails={getUserDetails} />
+      <UpdateGoalAmount goal={selectedUpdateGoal} getUserDetails={getUserDetails}/>
+
       {
         showExpenseModal &&
         <AddExpenseModal
           getUserDetails={getUserDetails}
           toggleshowExpenseModal={toggleshowExpenseModal}
           selectedUpdateExpense={selectedUpdateExpense}
-          setSelectedUpdateExpense={setSelectedUpdateExpense} />}
+          setSelectedUpdateExpense={setSelectedUpdateExpense} />
+      }
 
       <div className="col-md-6 mt-3 border p-3">
         <Avatar name={`${cognitoDetails.name} ${cognitoDetails.last_name}`} size={100} />
@@ -98,6 +101,7 @@ function Home(props) {
                       <th scope="col">Goal name</th>
                       <th scope="col">Catagory</th>
                       <th scope="col">Target</th>
+                      <th scope="col">Currently savded</th>
                       <th scope="col">Remaining time</th>
                     </tr>
                   </thead>
@@ -105,11 +109,12 @@ function Home(props) {
                     {
                       userDetails && userDetails.Goals && userDetails.Goals.Goals.map((item, index) => {
                         return (
-                          <tr>
+                          <tr data-toggle="modal" data-target="#UpdateGoalModal" onClick={(e) => setSelectedUpdateGoal(item)}>
                             <th scope="row">{index + 1}</th>
                             <td>{item.name}</td>
                             <td>{item.category}</td>
                             <td>{item.target}$</td>
+                            <td>{item.current_val}$</td>
                             <td>{item.duration} Months</td>
                           </tr>
                         )

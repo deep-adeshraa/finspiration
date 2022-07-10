@@ -8,6 +8,7 @@ function AddSalaryModal(props) {
   const addSalary = async () => {
     await API_CLIENT.post('/add-salary', { salary: salary });
     props.setSalary(salary);
+    
     closeRef.current.click();
   }
 
