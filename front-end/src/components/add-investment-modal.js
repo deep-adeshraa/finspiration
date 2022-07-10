@@ -7,18 +7,32 @@ function AddInvestMentModal(props) {
   const closeRef = useRef();
 
   const addInvestment = async () => {
+    let total = parseInt(amount);
 
-    const sameInvestMents = props.Investements.filter(item => item.name == name);
-    if (sameInvestMents.length) {
-      await API_CLIENT.post('/add-new-investment', {
-        name: name,
-        amount: amount
+    if (props.Investements) {
+      const sameInvestMents = props.Investements.filter(item => item.type == name);
+      // console.log(sameInvestMents, props.Investements, name)
+
+      sameInvestMents.forEach(item => {
+        total += parseInt(item.amount)
       })
+
+      if (!sameInvestMents.length) {
+        await API_CLIENT.post('/add-new-investment', {
+          name: name,
+          amount: total
+        })
+      } else {
+        await API_CLIENT.patch('/update-investment', {
+          name: name,
+          amount: total
+        });
+      }
     } else {
       await API_CLIENT.patch('/update-investment', {
         name: name,
-        amount: amount
-      })
+        amount: total
+      });
     }
     props.getUserDetails();
     closeRef.current.click();

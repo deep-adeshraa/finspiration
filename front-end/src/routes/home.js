@@ -11,11 +11,17 @@ import AddExpenseModal from "../components/add-expense-modal";
 
 
 function Home(props) {
+
+  const [showExpenseModal, toggleshowExpenseModal] = useState(false);
+
   const [userDetails, setUserDetails] = useState();
   const [cognitoDetails, setCognitoDetails] = useState({});
   const [totalMonthlyBudget, setTotalMonthlyBudget] = useState();
   const [totalMonthlyExpense, setTotalMonthlyExpense] = useState();
   const [salary, setSalary] = useState();
+
+  const [selectedUpdateExpense, setSelectedUpdateExpense] = useState();
+  const [selectedUpdateGoal, setSelectedUpdateGoal] = useState();
 
   const getUserDetails = () => {
     API_CLIENT.get('/get-complete-fin-detail').then((res) => {
@@ -55,10 +61,16 @@ function Home(props) {
     <div className="border rounded col-md-12 row">
       <Header />
       <AddSalaryModal setSalary={setSalary} />
+      <AddInvestMentModal getUserDetails={getUserDetails} Investements={userDetails?.Investements?.Investements} />
       <AddGoalModal getUserDetails={getUserDetails} />
-      <AddInvestMentModal getUserDetails={getUserDetails} Investements={userDetails?.Investements?.Investements}/>
       <AddBudgetModal getUserDetails={getUserDetails} />
-      <AddExpenseModal getUserDetails={getUserDetails} />
+      {
+        showExpenseModal &&
+        <AddExpenseModal
+          getUserDetails={getUserDetails}
+          toggleshowExpenseModal={toggleshowExpenseModal}
+          selectedUpdateExpense={selectedUpdateExpense}
+          setSelectedUpdateExpense={setSelectedUpdateExpense} />}
 
       <div className="col-md-6 mt-3 border p-3">
         <Avatar name={`${cognitoDetails.name} ${cognitoDetails.last_name}`} size={100} />
@@ -201,7 +213,7 @@ function Home(props) {
                     {
                       userDetails && userDetails.Expenses && userDetails.Expenses.Expenses.map((item, index) => {
                         return (
-                          <tr>
+                          <tr className="cursor-pointer" data-toggle="modal" data-target="#AddExpenseModal" onClick={(e) => { setSelectedUpdateExpense(item); toggleshowExpenseModal(true) }}>
                             <th scope="row">{index + 1}</th>
                             <td>{item.name}</td>
                             <td>{item.amount}$</td>
@@ -221,7 +233,7 @@ function Home(props) {
         <button className="btn btn-primary m-2" data-toggle="modal" data-target="#AddGoalModal">+ Add New Goal</button>
         <button className="btn btn-primary m-2" data-toggle="modal" data-target="#AddBudgetModal">+ Add New Budget</button>
         <button className="btn btn-primary m-2" data-toggle="modal" data-target="#AddInvestmentModal">+ Add New Investment</button>
-        <button className="btn btn-primary m-2" data-toggle="modal" data-target="#AddExpenseModal">+ Add New Expense</button>
+        <button onClick={(e) => { setSelectedUpdateExpense(null); toggleshowExpenseModal(true) }} className="btn btn-primary m-2" data-toggle="modal" data-target="#AddExpenseModal">+ Add New Expense</button>
       </div>
     </div>
   );
