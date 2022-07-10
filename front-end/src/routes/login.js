@@ -30,7 +30,7 @@ function Login(props) {
 
 
   return (
-    <div className="w-50 mx-auto border rounded p-3">
+    <div className="w-50 mx-auto border rounded p-3 mt-5">
       <h1> Login </h1>
 
       <div className="form-group mt-3">
@@ -43,7 +43,7 @@ function Login(props) {
         <small>Your password</small>
       </div>
 
-      <button type="submit" className="btn btn-primary signup-btn mt-5" onClick={submitHandler}>Verify</button>
+      <button type="submit" className="btn btn-primary signup-btn mt-5" onClick={submitHandler}>Login</button>
     </div>
   )
 }

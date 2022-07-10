@@ -19,7 +19,7 @@ function App() {
   return (
     <div className="App container ">
       <ToastContainer />
-      <div className='mt-5 mb-5'>
+      <div>
         <BrowserRouter>
           <Routes>
             <Route path='/' element={<PublicRoute restrictedToPublicOnly={true} />}>

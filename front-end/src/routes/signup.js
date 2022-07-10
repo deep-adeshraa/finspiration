@@ -48,7 +48,7 @@ function SignUp(props) {
 
 
   return (
-    <div id="Signup">
+    <div id="Signup" className="mt-5">
       <div className="mt-3 border bg-white p-3 rounded w-50 mx-auto">
         <h3 className="text-center">Registration</h3>
 

@@ -1,1 +1,1 @@
-export const BACKEND_URL = '';
+export const BACKEND_URL = 'https://qfmwosaeg8.execute-api.us-east-1.amazonaws.com/dev';
