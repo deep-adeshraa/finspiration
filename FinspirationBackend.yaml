@@ -1474,7 +1474,7 @@ Resources:
       AuthorizationType: NONE
       HttpMethod: GET
       ResourceId:
-        Ref: EventAddExpenseResource
+        Ref: EventGetCategoryResource
       RestApiId:
         Ref: FinspirationApi
       Integration:
@@ -1580,7 +1580,7 @@ Resources:
       AuthorizationType: NONE
       HttpMethod: GET
       ResourceId:
-        Ref: EventAddExpenseResource
+        Ref: EventGetCompleteFinDetailResource
       RestApiId:
         Ref: FinspirationApi
       Integration:
@@ -2110,7 +2110,7 @@ Resources:
       AuthorizationType: NONE
       HttpMethod: PATCH
       ResourceId:
-        Ref: EventAddExpenseResource
+        Ref: EventUpdateInvestmentResource
       RestApiId:
         Ref: FinspirationApi
       Integration:
