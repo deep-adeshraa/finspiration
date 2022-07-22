@@ -12,7 +12,10 @@ function Header(props) {
       <div class="collapse navbar-collapse" style={{ flexDirection: 'row-reverse' }} id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Visulization</a>
+            <a class="nav-link" href="/visualization">Visulization</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/home">Home</a>
           </li>
           <li onClick={logout} class="nav-item">
             <a class="nav-link" href="#">Logout</a>

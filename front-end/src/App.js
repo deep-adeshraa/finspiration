@@ -8,6 +8,7 @@ import Home from './routes/home';
 import Amplify from 'aws-amplify';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Visualization from './routes/visualization';
 
 Amplify.configure({
   aws_cognito_region: "us-east-1",
@@ -33,6 +34,7 @@ function App() {
           <Routes>
             <Route path='/' element={<PrivateRoute />}>
               <Route path='/home' element={<Home />}></Route>
+              <Route path='/visualization' element={<Visualization/>}></Route>
             </Route>
           </Routes>
         </BrowserRouter>

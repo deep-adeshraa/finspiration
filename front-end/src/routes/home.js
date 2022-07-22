@@ -22,6 +22,8 @@ function Home(props) {
 
   const [selectedUpdateExpense, setSelectedUpdateExpense] = useState();
   const [selectedUpdateGoal, setSelectedUpdateGoal] = useState([]);
+  const [totalGoals, setTotalGoals] = useState(0);
+  const [totalSavedGoals, setTotalSavedGoals] = useState(0);
 
   const getUserDetails = () => {
     API_CLIENT.get('/get-complete-fin-detail').then((res) => {
@@ -39,8 +41,18 @@ function Home(props) {
         totalMonthlyExpense += parseInt(item.amount);
       })
 
+      let totalGoals = 0;
+      let totalSavedForGoals = 0;
+      const goals = res.data.body.Goals.Goals;
+      goals.forEach(item => {
+        totalGoals += parseInt(item.target);
+        totalSavedForGoals += parseInt(item.current_val);
+      });
+
       setTotalMonthlyExpense(totalMonthlyExpense);
       setTotalMonthlyBudget(totalMonthlyBudget);
+      setTotalGoals(totalGoals);
+      setTotalSavedGoals(totalSavedForGoals);
       setSalary(res.data.body.Monthly_Salary);
     });
   }
@@ -64,7 +76,7 @@ function Home(props) {
       <AddInvestMentModal getUserDetails={getUserDetails} Investements={userDetails?.Investements?.Investements} />
       <AddBudgetModal getUserDetails={getUserDetails} />
       <AddGoalModal getUserDetails={getUserDetails} />
-      <UpdateGoalAmount goal={selectedUpdateGoal} getUserDetails={getUserDetails}/>
+      <UpdateGoalAmount goal={selectedUpdateGoal} getUserDetails={getUserDetails} />
 
       {
         showExpenseModal &&
@@ -88,7 +100,7 @@ function Home(props) {
           <div class="card">
             <div class="card-header" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
               <h5 class="mb-0">
-                Goals
+                Goals   ({totalSavedGoals}$/{totalGoals}$)
               </h5>
             </div>
 

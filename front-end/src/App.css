@@ -40,3 +40,10 @@
 .cursor-pointer {
   cursor: pointer;
 }
+
+.custom-tooltip {
+  border: solid ghostwhite 1px;
+  background-color: transparent;
+  background-color: gainsboro;
+  opacity: 0.5;
+}
