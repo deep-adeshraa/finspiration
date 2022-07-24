@@ -2,6 +2,11 @@
 
 AWSTemplateFormatVersion: '2010-09-09'
 
+Parameters:
+  EC2InstanceType:
+    Type: String
+    Default: t2.medium
+
 Resources:
   fispirationApplication:
     Type: AWS::ElasticBeanstalk::Application
@@ -26,7 +31,7 @@ Resources:
       OptionSettings:
       - Namespace: aws:autoscaling:asg
         OptionName: MinSize
-        Value: '2'
+        Value: '3'
       - Namespace: aws:autoscaling:asg
         OptionName: MaxSize
         Value: '6'
