@@ -3,6 +3,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { Auth } from "aws-amplify";
 import { useNavigate } from "react-router-dom";
 
+//  Ref: https://docs.amplify.aws/lib/auth/emailpassword/q/platform/js/
 function SignUp(props) {
   const initialValues = {
     firstName: "",

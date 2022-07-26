@@ -10,7 +10,7 @@ import AddBudgetModal from "../components/add-budget-modal";
 import AddExpenseModal from "../components/add-expense-modal";
 import UpdateGoalAmount from "../components/update-goal-amount";
 
-
+//  Ref: https://docs.amplify.aws/lib/auth/emailpassword/q/platform/js/
 function Home(props) {
   const [showExpenseModal, toggleshowExpenseModal] = useState(false);
 

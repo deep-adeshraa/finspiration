@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import { Auth } from "aws-amplify";
 
-
+//  Ref: https://docs.amplify.aws/lib/auth/emailpassword/q/platform/js/
 const PrivateRoute = () => {
   // TODO : Create hook
   const [isAuthenticated, setLoggedIn] = React.useState(true);

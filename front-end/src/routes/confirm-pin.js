@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import useForm from "../hooks/useFormHook";
 
+// //  Ref: https://docs.amplify.aws/lib/auth/emailpassword/q/platform/js/
 function ConfirmPin(props) {
   const initialValues = {
     email: "",

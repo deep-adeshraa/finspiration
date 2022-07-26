@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import API_CLIENT from '../api/axios_client';
 
+// https://recharts.org/en-US/examples
 const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
     console.log(payload)

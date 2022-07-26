@@ -24,7 +24,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
   );
 };
 
-
+// Refrence:  https://recharts.org/en-US/examples
 function InvestmentChart(props) {
   const [investments, setInvestments] = useState([])
 

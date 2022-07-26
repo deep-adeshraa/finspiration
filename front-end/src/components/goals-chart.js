@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import API_CLIENT from '../api/axios_client';
 
+// https://recharts.org/en-US/examples
 function GoalsChart(props) {
   const [graphData, setGraphData] = useState([]);
 
