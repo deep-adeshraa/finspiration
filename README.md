@@ -12,6 +12,7 @@
 - DynamoDB
 - Amazon SES
 - Amazon SNS
+- Cloud Formation
 
 ### Contributors
 
